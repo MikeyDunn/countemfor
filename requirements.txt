@@ -1,0 +1,14 @@
+certifi==2018.10.15
+chardet==3.0.4
+configparser==3.5.0
+future==0.17.1
+idna==2.7
+oauthlib==2.1.0
+python-slugify==1.2.6
+python-twitter==3.5
+requests==2.20.0
+requests-oauthlib==1.0.0
+six==1.11.0
+transifex-client==0.13.5
+Unidecode==1.0.22
+urllib3==1.23
