@@ -1,7 +1,7 @@
 # system imports
-from calendar import timegm
 import configparser
 import collections
+import calendar
 import time
 import csv
 import re
@@ -67,7 +67,7 @@ def getMentions():
     for index, tweet in enumerate(tweet_list):
         tweet_time = time.strptime(tweet.created_at,'%a %b %d %H:%M:%S +0000 %Y')
         now_epoch = int(time.time())
-        tweet_epoch = timegm(tweet_time)
+        tweet_epoch = calendar.timegm(tweet_time)
 
         # iterate through tweets until reaching a tweet older than needed
         if tweet_epoch < now_epoch - TWITTER_MAX_REQ_TIME:
@@ -87,13 +87,21 @@ def getCounterByList(tweet_list):
     return word_counter
 
 def getCounterByTweet(tweet):
+    output_list = []
     tweet_string = tweet.full_text.lower()
-    # match on words larger than 3 characters
-    word_reg = re.compile(r'[a-zA-Z]{3,}')
-    word_list = word_reg.findall(tweet_string)
-    # filter out stop words from exclude.csv
-    word_list_filtered = [word for word in word_list if word not in filter_list]
-    word_counter = collections.Counter(word_list_filtered)
+    word_list = tweet_string.split()
+
+    # filter words that are hashtags, mentions, links
+    # also filter if they are included in the exclude.csv
+    # or less than 3 characters
+    for word in word_list:
+        word_clean = re.sub('[^A-Za-z0-9]+', '', word)
+        if (word_clean not in filter_list and
+        not word.startswith(('@', '#', 'http')) and
+        len(word_clean) > 2):
+            output_list.append(word_clean)
+
+    word_counter = collections.Counter(output_list)
 
     return word_counter
 
