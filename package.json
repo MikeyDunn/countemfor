@@ -1,0 +1,10 @@
+{
+  "name": "countemfor",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-plugin-include-dependencies": "^3.2.1",
+    "serverless-python-requirements": "4.2.4"
+  }
+}
