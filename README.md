@@ -53,8 +53,7 @@ Tweets Analyzed:
 182
 ```
 
-A live demo can be accessed at:
-[@countemfor](https://twitter.com/countemfor/with_replies)
+A live demo can be trialed by mentioning [@countemfor](https://twitter.com/countemfor/with_replies) and another twitter user.
 
 ##### Testing
 
